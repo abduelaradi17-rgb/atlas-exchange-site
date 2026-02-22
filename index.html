@@ -59,12 +59,12 @@
         gap: 1rem;
       }
       .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; letter-spacing: 0.05em; }
-      .logo-img {
-        width: 54px;
-        height: 54px;
-        border-radius: 10px;
-        object-fit: cover;
-      }
+   .logo-img{
+  height: 54px;
+  width: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
 
       .desktop-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 0.2rem; }
       .desktop-nav details { position: relative; }
@@ -236,8 +236,7 @@
       <div class="container main-header-inner">
         <a href="#" class="brand" aria-label="ATLAS Exchange home">
           <!-- Replace src with official logo asset path when available in repository. -->
-          <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' fill='white'/%3E%3Ccircle cx='40' cy='74' r='10' fill='%23dc2626'/%3E%3Ccircle cx='55' cy='58' r='11' fill='%23dc2626'/%3E%3Ccircle cx='72' cy='45' r='11' fill='%23dc2626'/%3E%3Ccircle cx='93' cy='42' r='10' fill='%23111827'/%3E%3Ccircle cx='102' cy='60' r='10' fill='%23111827'/%3E%3Ccircle cx='99' cy='80' r='10' fill='%2316a34a'/%3E%3Ccircle cx='82' cy='95' r='10' fill='%2316a34a'/%3E%3Crect x='69' y='64' width='14' height='34' fill='white'/%3E%3C/svg%3E" alt="ATLAS Exchange logo" />
-          <span>ATLAS EXCHANGE</span>
+          <img class="logo-img" src="atlas-logo.png" alt="ATLAS Exchange logo" />
         </a>
 
         <nav class="desktop-nav" aria-label="Main Navigation">

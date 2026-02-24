@@ -18,8 +18,6 @@ Responsive one-page website for **ATLAS Exchange** built with plain **HTML/CSS/J
 - Four service cards.
 - Two content panels: branch locations in Libya + LYD-based currency converter.
 - Currency rates area with tabs (`Rates Table` / `Gold Rates`).
-- Rates table loads live data from Central Bank of Libya (CBL) through a Netlify Function.
-- Fallback to demo rates if live fetch is unavailable (with a console warning).
 - Footer with policy links.
 - Mobile responsive hamburger drawer menu.
 
@@ -29,6 +27,7 @@ Responsive one-page website for **ATLAS Exchange** built with plain **HTML/CSS/J
 - Main/base currency in converter and rates: **LYD (Libyan Dinar)**.
 
 ## Local development
+## Run locally
 
 ```bash
 python3 -m http.server 8080
@@ -44,3 +43,9 @@ Open `http://localhost:8080`.
 - The function returns JSON in this shape:
   - `{ base: "LYD", date: "YYYY-MM-DD", rates: { USD: { buy, sell, average, unit }, ... } }`
 - `Cache-Control` for function responses is set to `public, max-age=900`.
+## API integration notes
+
+`index.html` includes inline `TODO(API)` markers for future backend integration:
+
+- Replace static `lydPerCurrency` map with live API rates.
+- Include response metadata (timestamp/source) for compliance and auditing.

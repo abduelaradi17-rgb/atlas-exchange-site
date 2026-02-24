@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,6 +42,7 @@
         padding: 0.3rem 0.75rem;
         cursor: pointer;
       }
+      .lang-switch button.active { background: rgba(255,255,255,0.15); }
 
       .main-header {
         position: sticky;
@@ -55,54 +56,12 @@
         min-height: 84px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
+        justify-content: flex-start;
       }
-      .brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; letter-spacing: 0.05em; }
-   .logo-img{
-  height: 54px;
-  width: auto;
-  border-radius: 10px;
-  object-fit: contain;
-}
-
-      .desktop-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 0.2rem; }
-      .desktop-nav details { position: relative; }
-      .desktop-nav summary,
-      .desktop-nav .simple-link {
-        list-style: none;
-        cursor: pointer;
-        padding: 0.65rem 0.8rem;
-        border-radius: 10px;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-      .desktop-nav summary::-webkit-details-marker { display: none; }
-      .desktop-nav summary:hover,
-      .desktop-nav .simple-link:hover { background: #eff6ff; }
-
-      .dropdown {
-        position: absolute;
-        top: calc(100% + 6px);
-        left: 0;
-        min-width: 220px;
-        background: var(--surface);
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-        padding: 0.4rem;
-      }
-      .dropdown a { display: block; padding: 0.55rem 0.6rem; border-radius: 8px; }
-      .dropdown a:hover { background: #f1f5f9; }
-
-      .hamburger {
-        display: none;
-        border: 1px solid #cbd5e1;
-        border-radius: 10px;
-        background: #fff;
-        padding: 0.48rem;
-        cursor: pointer;
+      .logo-img {
+        width: clamp(150px, 22vw, 240px);
+        height: auto;
+        display: block;
       }
 
       .hero { padding: 4.5rem 0 3rem; }
@@ -150,8 +109,6 @@
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
       }
-      .branch-list { margin: 0; padding-left: 1rem; }
-      .branch-list li { margin: 0.45rem 0; }
 
       .converter-form { display: grid; gap: 0.6rem; }
       .converter-form input,
@@ -181,34 +138,11 @@
       footer { background: #0b1328; color: #cbd5e1; padding: 2rem 0; }
       .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; }
 
-      .drawer {
-        position: fixed;
-        inset: 0 0 0 auto;
-        width: min(85vw, 340px);
-        background: #fff;
-        transform: translateX(100%);
-        transition: transform 0.25s ease;
-        box-shadow: -12px 0 30px rgba(15,23,42,0.18);
-        z-index: 50;
-        padding: 1rem;
-      }
-      .drawer.open { transform: translateX(0); }
-      .drawer ul { list-style: none; margin: 0.7rem 0 0; padding: 0; }
-      .drawer li { border-bottom: 1px solid #f1f5f9; }
-      .drawer a { display: block; padding: 0.75rem 0.2rem; }
-
-      .overlay {
-        position: fixed;
-        inset: 0;
-        display: none;
-        background: rgba(2,6,23,0.4);
-        z-index: 45;
-      }
-      .overlay.show { display: block; }
+      html[dir="rtl"] body { font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
+      html[dir="rtl"] th,
+      html[dir="rtl"] td { text-align: right; }
 
       @media (max-width: 980px) {
-        .desktop-nav { display: none; }
-        .hamburger { display: inline-flex; }
         .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .panels { grid-template-columns: 1fr; }
       }
@@ -224,116 +158,112 @@
     <div class="top-strip">
       <div class="container top-strip-inner">
         <div class="lang-switch">
-          <span>Language:</span>
-          <button type="button">English</button>
-          <button type="button" aria-label="Arabic">العربية</button>
+          <span data-i18n="languageLabel">Language:</span>
+          <button id="langEn" class="active" type="button">English</button>
+          <button id="langAr" type="button" aria-label="Arabic">العربية</button>
         </div>
-        <div>Customer Service: <a href="tel:+218213355001">+218 21 335 5001</a></div>
+        <div data-i18n="customerService">Customer Service: Coming Soon</div>
       </div>
     </div>
 
     <header class="main-header">
       <div class="container main-header-inner">
-        <a href="#" class="brand" aria-label="ATLAS Exchange home">
-          <!-- Replace src with official logo asset path when available in repository. -->
-          <img class="logo-img" src="atlas-logo.png" alt="ATLAS Exchange logo" />
+        <a href="#" aria-label="ATLAS Exchange home">
+          <img class="logo-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 200'%3E%3Crect width='480' height='200' fill='white'/%3E%3Ccircle cx='130' cy='70' r='7' fill='%23d90000'/%3E%3Ccircle cx='146' cy='56' r='8' fill='%23d90000'/%3E%3Ccircle cx='165' cy='45' r='8' fill='%23d90000'/%3E%3Ccircle cx='189' cy='39' r='7' fill='%23d90000'/%3E%3Ccircle cx='214' cy='45' r='7' fill='%23000'/%3E%3Ccircle cx='228' cy='59' r='7' fill='%23000'/%3E%3Ccircle cx='228' cy='76' r='7' fill='%23000'/%3E%3Ccircle cx='212' cy='90' r='7' fill='%23239b56'/%3E%3Ccircle cx='190' cy='98' r='7' fill='%23239b56'/%3E%3Ccircle cx='168' cy='96' r='7' fill='%23239b56'/%3E%3Crect x='164' y='67' width='28' height='31' fill='white'/%3E%3Ctext x='60' y='148' font-family='Arial,sans-serif' font-size='46' letter-spacing='10' fill='%23000'%3EATLAS%3C/text%3E%3Ctext x='73' y='182' font-family='Arial,sans-serif' font-size='34' letter-spacing='8' fill='%23000'%3EEXCHANGE%3C/text%3E%3C/svg%3E" alt="ATLAS Exchange logo" />
         </a>
-
-        <nav class="desktop-nav" aria-label="Main Navigation">
-          <ul>
-            <li><a class="simple-link" href="#">Home</a></li>
-            <li>
-              <details>
-                <summary>About ▾</summary>
-                <div class="dropdown">
-                  <a href="#">Company Profile</a>
-                  <a href="#">Leadership</a>
-                </div>
-              </details>
-            </li>
-            <li>
-              <details>
-                <summary>Services ▾</summary>
-                <div class="dropdown">
-                  <a href="#services">Money Transfer</a>
-                  <a href="#services">Money Exchange</a>
-                </div>
-              </details>
-            </li>
-            <li><a class="simple-link" href="#branches">Branch Locator</a></li>
-            <li>
-              <details>
-                <summary>Media Center ▾</summary>
-                <div class="dropdown">
-                  <a href="#">News</a>
-                  <a href="#">Press Releases</a>
-                </div>
-              </details>
-            </li>
-            <li><a class="simple-link" href="#">Contact Us</a></li>
-            <li><a class="simple-link" href="#">Careers</a></li>
-          </ul>
-        </nav>
-
-        <button id="hamburgerBtn" class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
       </div>
     </header>
-
-    <aside id="mobileDrawer" class="drawer" aria-label="Mobile menu" aria-hidden="true">
-      <button id="closeDrawer" class="btn btn-outline" type="button">Close</button>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#branches">Branch Locator</a></li>
-        <li><a href="#">Media Center</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Careers</a></li>
-      </ul>
-    </aside>
-    <div id="drawerOverlay" class="overlay"></div>
 
     <main>
       <section class="hero container">
         <div class="hero-card">
-          <h1>Trusted Exchange Services in Libya with LYD-First Pricing</h1>
-          <p>
-            ATLAS Exchange helps customers and businesses across Libya send money, exchange currencies, and manage travel finances securely,
-            with transparent Libyan Dinar (LYD) rates.
+          <h1 data-i18n="heroTitle">Secure, Efficient, and Accessible Financial Services in Libya</h1>
+          <p data-i18n="heroBody">
+            Founded in Libya in 2026, Atlas provides reliable and transparent money transfers, currency exchange, investment-grade gold bars and
+            coins, and multi-currency prepaid travel cards to support important financial decisions.
           </p>
           <div class="hero-actions">
-            <button class="btn btn-primary">Send Money</button>
-            <button class="btn btn-outline">Find Libya Branch</button>
-            <button class="btn btn-outline">Check LYD Rates</button>
+            <button class="btn btn-primary" data-i18n="heroBtn1">Money Transfers</button>
+            <button class="btn btn-outline" data-i18n="heroBtn2">Currency Exchange</button>
+            <button class="btn btn-outline" data-i18n="heroBtn3">View Rates</button>
           </div>
         </div>
       </section>
 
       <section class="section container" id="services">
-        <h2 class="section-title">Our Services</h2>
+        <h2 class="section-title" data-i18n="servicesTitle">Our Services</h2>
         <div class="services-grid">
-          <article class="card"><h3>Money Transfer</h3><p class="muted">Fast local and international remittance from Libya to key global corridors.</p></article>
-          <article class="card"><h3>Money Exchange</h3><p class="muted">Competitive buy/sell rates with LYD as the core reference currency.</p></article>
-          <article class="card"><h3>Gold Bars &amp; Coins</h3><p class="muted">Investment-grade gold products with indicative spot-linked pricing.</p></article>
-          <article class="card"><h3>Travel Card</h3><p class="muted">Secure multi-currency prepaid cards for personal and business travel.</p></article>
+          <article class="card"><h3 data-i18n="svc1Title">Money Transfer</h3><p class="muted" data-i18n="svc1Body">Secure money transfer services designed for reliable transactions.</p></article>
+          <article class="card"><h3 data-i18n="svc2Title">Money Exchange</h3><p class="muted" data-i18n="svc2Body">Competitive currency exchange solutions with transparent pricing.</p></article>
+          <article class="card"><h3 data-i18n="svc3Title">Gold Bars &amp; Coins</h3><p class="muted" data-i18n="svc3Body">Investment-grade gold bars and coins with pricing aligned to international market rates.</p></article>
+          <article class="card"><h3 data-i18n="svc4Title">Travel Card</h3><p class="muted" data-i18n="svc4Body">Multi-currency prepaid travel cards for safe and convenient global transactions.</p></article>
+        </div>
+      </section>
+
+      <section class="section container" id="rates">
+        <h2 class="section-title" data-i18n="ratesTitle">Currency Rates</h2>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="rates" data-i18n="ratesTab">Rates Table</button>
+          <button class="tab-btn" data-tab="gold" data-i18n="goldTab">Gold Rates</button>
+        </div>
+
+        <article class="card tab-panel active" id="ratesPanel">
+          <table>
+            <thead>
+              <tr><th data-i18n="tablePair">Pair</th><th data-i18n="tableBuy">Buy</th><th data-i18n="tableSell">Sell</th></tr>
+            </thead>
+            <tbody id="ratesTableBody">
+              <tr><td>USD/LYD</td><td>4.790</td><td>4.860</td></tr>
+              <tr><td>EUR/LYD</td><td>5.160</td><td>5.280</td></tr>
+              <tr><td>GBP/LYD</td><td>6.000</td><td>6.140</td></tr>
+              <tr><td>TND/LYD</td><td>1.530</td><td>1.600</td></tr>
+            </tbody>
+          </table>
+          <p id="ratesMeta" class="muted" data-i18n="ratesMeta">Indicative rates for Libya branches. Final rates are confirmed at transaction time.</p>
+        </article>
+
+        <article class="card tab-panel" id="goldPanel">
+          <table>
+            <thead>
+              <tr><th data-i18n="goldMetal">Metal</th><th data-i18n="goldUnit">Unit</th><th data-i18n="goldRate">Rate (LYD)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-i18n="g24">Gold 24K</td><td data-i18n="perGram1">per gram</td><td>376.50</td></tr>
+              <tr><td data-i18n="g22">Gold 22K</td><td data-i18n="perGram2">per gram</td><td>344.90</td></tr>
+              <tr><td data-i18n="silver">Silver</td><td data-i18n="perGram3">per gram</td><td>4.20</td></tr>
+            </tbody>
+          </table>
+        </article>
+      </section>
+
+      <section class="section container" id="about-atlas">
+        <h2 class="section-title" data-i18n="aboutTitle">About Atlas</h2>
+        <div class="panels">
+          <article class="card">
+            <h3 data-i18n="overviewTitle">Overview</h3>
+            <p class="muted" data-i18n="overview1">Founded in Libya in 2026, Atlas was established with a clear objective: to provide secure, efficient, and accessible financial services. We recognize that every transfer, currency exchange, or investment transaction represents an important financial decision that supports family commitments, business growth, and long-term financial planning.</p>
+            <p class="muted" data-i18n="overview2">As remittance flows and cross-border trade continue to expand, we identified the need for a trusted financial partner capable of delivering reliable and transparent services. Accordingly, we offer secure money transfers, competitive currency exchange solutions, investment-grade gold bars and coins with pricing aligned to international market rates, and multi-currency prepaid travel cards designed to facilitate safe and convenient global transactions.</p>
+            <p class="muted" data-i18n="overview3">Our operations are supported by advanced technological systems, strong compliance frameworks, and experienced financial professionals. Through operational excellence and a commitment to integrity, we deliver dependable financial solutions that build long-term client confidence and trust.</p>
+          </article>
+          <article class="card">
+            <h3 data-i18n="visionTitle">Vision</h3>
+            <p class="muted" data-i18n="visionBody">To be a reliable and trusted provider of exchange, remittance, and financial services in Libya, with a growing presence across the region.</p>
+            <h3 data-i18n="missionTitle">Mission</h3>
+            <p class="muted" data-i18n="missionBody">To deliver safe, efficient, and transparent financial services, including money transfers, currency exchange, gold trading, and travel payment solutions, while maintaining high standards of professionalism and regulatory compliance.</p>
+          </article>
         </div>
       </section>
 
       <section class="section container">
         <div class="panels">
           <article class="card" id="branches">
-            <h2 class="section-title">Branch Locations</h2>
-            <p class="muted">Visit ATLAS Exchange across Libya:</p>
-            <ul class="branch-list">
-              <li>Tripoli - Algeria Street Branch</li>
-              <li>Benghazi - Jamal Abdel Nasser Street</li>
-              <li>Misrata - Central Commercial District</li>
-              <li>Sebha - Al Jadid Branch</li>
-            </ul>
+            <h2 class="section-title" data-i18n="branchesTitle">Branch Locations</h2>
+            <p class="muted" data-i18n="comingSoon">Coming Soon</p>
+            <p class="muted" data-i18n="branchesSub">We are preparing our first locations in Libya.</p>
           </article>
 
           <article class="card">
-            <h2 class="section-title">Currency Converter (LYD Base)</h2>
+            <h2 class="section-title" data-i18n="converterTitle">Currency Converter (LYD Base)</h2>
             <form id="converterForm" class="converter-form">
               <input type="number" step="0.01" min="0" id="amount" value="500" required />
               <select id="fromCurrency">
@@ -350,78 +280,96 @@
                 <option value="GBP">GBP</option>
                 <option value="TND">TND</option>
               </select>
-              <button class="btn btn-primary" type="submit">Convert</button>
+              <button class="btn btn-primary" type="submit" data-i18n="convertBtn">Convert</button>
             </form>
-            <div id="conversionResult" class="result">Result: --</div>
+            <div id="conversionResult" class="result" data-i18n="resultPlaceholder">Result: --</div>
           </article>
         </div>
       </section>
 
-      <section class="section container">
-        <h2 class="section-title">Currency Rates</h2>
-        <div class="tabs">
-          <button class="tab-btn active" data-tab="rates">Rates Table</button>
-          <button class="tab-btn" data-tab="gold">Gold Rates</button>
-        </div>
 
-        <article class="card tab-panel active" id="ratesPanel">
-          <table>
-            <thead>
-              <tr><th>Pair</th><th>Buy</th><th>Sell</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>USD/LYD</td><td>4.79</td><td>4.86</td></tr>
-              <tr><td>EUR/LYD</td><td>5.16</td><td>5.28</td></tr>
-              <tr><td>GBP/LYD</td><td>6.00</td><td>6.14</td></tr>
-              <tr><td>TND/LYD</td><td>1.53</td><td>1.60</td></tr>
-            </tbody>
-          </table>
-          <p class="muted">Indicative rates for Libya branches. Final rates are confirmed at transaction time.</p>
-        </article>
-
-        <article class="card tab-panel" id="goldPanel">
-          <table>
-            <thead>
-              <tr><th>Metal</th><th>Unit</th><th>Rate (LYD)</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Gold 24K</td><td>per gram</td><td>376.50</td></tr>
-              <tr><td>Gold 22K</td><td>per gram</td><td>344.90</td></tr>
-              <tr><td>Silver</td><td>per gram</td><td>4.20</td></tr>
-            </tbody>
-          </table>
-        </article>
-      </section>
     </main>
 
     <footer>
       <div class="container">
         <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms &amp; Conditions</a>
-          <a href="#">AML Policy</a>
-          <a href="#">Cookie Notice</a>
-          <a href="#">Sitemap</a>
+          <a href="#" data-i18n="fPrivacy">Privacy Policy</a>
+          <a href="#" data-i18n="fTerms">Terms &amp; Conditions</a>
+          <a href="#" data-i18n="fAml">AML Policy</a>
+          <a href="#" data-i18n="fCookie">Cookie Notice</a>
+          <a href="#" data-i18n="fSitemap">Sitemap</a>
         </div>
       </div>
     </footer>
 
     <script>
-      const drawer = document.getElementById("mobileDrawer");
-      const overlay = document.getElementById("drawerOverlay");
-      const hamburgerBtn = document.getElementById("hamburgerBtn");
-      const closeDrawer = document.getElementById("closeDrawer");
+      const form = document.getElementById("converterForm");
+      const resultEl = document.getElementById("conversionResult");
+      const ratesTableBody = document.getElementById("ratesTableBody");
+      const ratesMeta = document.getElementById("ratesMeta");
+      const langEn = document.getElementById("langEn");
+      const langAr = document.getElementById("langAr");
 
-      function toggleDrawer(open) {
-        drawer.classList.toggle("open", open);
-        overlay.classList.toggle("show", open);
-        drawer.setAttribute("aria-hidden", String(!open));
-        hamburgerBtn.setAttribute("aria-expanded", String(open));
+      const i18n = {
+        en: {
+          languageLabel: "Language:", customerService: "Customer Service: Coming Soon", heroTitle: "Secure, Efficient, and Accessible Financial Services in Libya",
+          heroBody: "Founded in Libya in 2026, Atlas provides reliable and transparent money transfers, currency exchange, investment-grade gold bars and coins, and multi-currency prepaid travel cards to support important financial decisions.",
+          heroBtn1: "Money Transfers", heroBtn2: "Currency Exchange", heroBtn3: "View Rates", servicesTitle: "Our Services",
+          svc1Title: "Money Transfer", svc1Body: "Secure money transfer services designed for reliable transactions.", svc2Title: "Money Exchange", svc2Body: "Competitive currency exchange solutions with transparent pricing.",
+          svc3Title: "Gold Bars & Coins", svc3Body: "Investment-grade gold bars and coins with pricing aligned to international market rates.", svc4Title: "Travel Card", svc4Body: "Multi-currency prepaid travel cards for safe and convenient global transactions.",
+          ratesTitle: "Currency Rates", ratesTab: "Rates Table", goldTab: "Gold Rates", tablePair: "Pair", tableBuy: "Buy", tableSell: "Sell",
+          ratesMeta: "Indicative rates for Libya branches. Final rates are confirmed at transaction time.", goldMetal: "Metal", goldUnit: "Unit", goldRate: "Rate (LYD)",
+          g24: "Gold 24K", g22: "Gold 22K", silver: "Silver", perGram1: "per gram", perGram2: "per gram", perGram3: "per gram",
+          branchesTitle: "Branch Locations", comingSoon: "Coming Soon", branchesSub: "We are preparing our first locations in Libya.",
+          converterTitle: "Currency Converter (LYD Base)", convertBtn: "Convert", resultPlaceholder: "Result: --", resultLabel: "Result",
+          aboutTitle: "About Atlas", overviewTitle: "Overview", overview1: "Founded in Libya in 2026, Atlas was established with a clear objective: to provide secure, efficient, and accessible financial services. We recognize that every transfer, currency exchange, or investment transaction represents an important financial decision that supports family commitments, business growth, and long-term financial planning.",
+          overview2: "As remittance flows and cross-border trade continue to expand, we identified the need for a trusted financial partner capable of delivering reliable and transparent services. Accordingly, we offer secure money transfers, competitive currency exchange solutions, investment-grade gold bars and coins with pricing aligned to international market rates, and multi-currency prepaid travel cards designed to facilitate safe and convenient global transactions.",
+          overview3: "Our operations are supported by advanced technological systems, strong compliance frameworks, and experienced financial professionals. Through operational excellence and a commitment to integrity, we deliver dependable financial solutions that build long-term client confidence and trust.",
+          visionTitle: "Vision", visionBody: "To be a reliable and trusted provider of exchange, remittance, and financial services in Libya, with a growing presence across the region.",
+          missionTitle: "Mission", missionBody: "To deliver safe, efficient, and transparent financial services, including money transfers, currency exchange, gold trading, and travel payment solutions, while maintaining high standards of professionalism and regulatory compliance.",
+          fPrivacy: "Privacy Policy", fTerms: "Terms & Conditions", fAml: "AML Policy", fCookie: "Cookie Notice", fSitemap: "Sitemap", cblLoaded: "CBL indicative rates loaded"
+        },
+        ar: {
+          languageLabel: "اللغة:", customerService: "خدمة العملاء: قريبًا", heroTitle: "خدمات مالية آمنة وفعّالة ومتاحة في ليبيا",
+          heroBody: "تأسست أطلس في ليبيا عام 2026، وتقدم خدمات موثوقة وشفافة تشمل تحويل الأموال وصرف العملات وسبائك وعملات الذهب الاستثمارية وبطاقات السفر مسبقة الدفع متعددة العملات لدعم القرارات المالية المهمة.",
+          heroBtn1: "تحويل الأموال", heroBtn2: "صرف العملات", heroBtn3: "عرض الأسعار", servicesTitle: "خدماتنا",
+          svc1Title: "تحويل الأموال", svc1Body: "خدمات تحويل أموال آمنة ومصممة لتنفيذ معاملات موثوقة.", svc2Title: "صرف العملات", svc2Body: "حلول تنافسية لصرف العملات مع تسعير شفاف.",
+          svc3Title: "سبائك وعملات الذهب", svc3Body: "سبائك وعملات ذهب استثمارية مع تسعير مرتبط بالأسعار العالمية.", svc4Title: "بطاقة السفر", svc4Body: "بطاقات سفر مسبقة الدفع متعددة العملات لمعاملات عالمية آمنة ومريحة.",
+          ratesTitle: "أسعار العملات", ratesTab: "جدول الأسعار", goldTab: "أسعار الذهب", tablePair: "الزوج", tableBuy: "شراء", tableSell: "بيع",
+          ratesMeta: "أسعار إرشادية لفروع ليبيا. يتم تأكيد الأسعار النهائية وقت تنفيذ المعاملة.", goldMetal: "المعدن", goldUnit: "الوحدة", goldRate: "السعر (دينار ليبي)",
+          g24: "ذهب 24 قيراط", g22: "ذهب 22 قيراط", silver: "فضة", perGram1: "لكل غرام", perGram2: "لكل غرام", perGram3: "لكل غرام",
+          branchesTitle: "مواقع الفروع", comingSoon: "قريبًا", branchesSub: "نعمل على تجهيز أول مواقعنا في ليبيا.",
+          converterTitle: "محول العملات (الأساس LYD)", convertBtn: "تحويل", resultPlaceholder: "النتيجة: --", resultLabel: "النتيجة",
+          aboutTitle: "عن أطلس", overviewTitle: "نبذة", overview1: "تأسست أطلس في ليبيا عام 2026 بهدف واضح يتمثل في تقديم خدمات مالية آمنة وفعالة ومتاحة. ونحن ندرك أن كل عملية تحويل أو صرف عملات أو معاملة استثمارية تمثل قرارًا ماليًا مهمًا يدعم التزامات الأسرة ونمو الأعمال والتخطيط المالي طويل الأجل.",
+          overview2: "ومع استمرار نمو تدفقات الحوالات والتجارة عبر الحدود، حددنا الحاجة إلى شريك مالي موثوق قادر على تقديم خدمات تعتمد على الشفافية والموثوقية. وبناءً على ذلك، نقدم تحويلات أموال آمنة، وحلولًا تنافسية لصرف العملات، وسبائك وعملات ذهب استثمارية بتسعير مرتبط بالأسواق العالمية، وبطاقات سفر مسبقة الدفع متعددة العملات لتسهيل المعاملات العالمية الآمنة والمريحة.",
+          overview3: "تعتمد عملياتنا على أنظمة تقنية متقدمة وأطر امتثال قوية وخبرات مالية متخصصة. ومن خلال التميز التشغيلي والالتزام بالنزاهة، نقدم حلولًا مالية موثوقة تبني الثقة طويلة الأجل لدى العملاء.",
+          visionTitle: "الرؤية", visionBody: "أن نكون مزودًا موثوقًا ومعتمدًا لخدمات الصرف والحوالات والخدمات المالية في ليبيا، مع حضور متنامٍ على مستوى المنطقة.",
+          missionTitle: "الرسالة", missionBody: "تقديم خدمات مالية آمنة وفعالة وشفافة، تشمل تحويل الأموال وصرف العملات وتداول الذهب وحلول المدفوعات للسفر، مع الالتزام بمعايير عالية من المهنية والامتثال التنظيمي.",
+          fPrivacy: "سياسة الخصوصية", fTerms: "الشروط والأحكام", fAml: "سياسة مكافحة غسل الأموال", fCookie: "إشعار ملفات تعريف الارتباط", fSitemap: "خريطة الموقع", cblLoaded: "تم تحميل أسعار مصرف ليبيا المركزي الإرشادية"
+        }
+      };
+
+      let currentLang = "en";
+
+      function t(key) {
+        return i18n[currentLang][key] || i18n.en[key] || key;
       }
 
-      hamburgerBtn.addEventListener("click", () => toggleDrawer(true));
-      closeDrawer.addEventListener("click", () => toggleDrawer(false));
-      overlay.addEventListener("click", () => toggleDrawer(false));
+      function applyLanguage(lang) {
+        currentLang = lang;
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+        langEn.classList.toggle("active", lang === "en");
+        langAr.classList.toggle("active", lang === "ar");
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.dataset.i18n;
+          el.textContent = t(key);
+        });
+      }
+
+      langEn.addEventListener("click", () => applyLanguage("en"));
+      langAr.addEventListener("click", () => applyLanguage("ar"));
 
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -433,18 +381,48 @@
         });
       });
 
-      const form = document.getElementById("converterForm");
-      const resultEl = document.getElementById("conversionResult");
+      const fallbackLydPerCurrency = { LYD: 1, USD: 4.82, EUR: 5.22, GBP: 6.07, TND: 1.57 };
+      let lydPerCurrency = { ...fallbackLydPerCurrency };
 
-      // TODO(API): Replace static LYD-based rates with a live market-rates endpoint.
-      // Values represent 1 unit of currency in LYD.
-      const lydPerCurrency = {
-        LYD: 1,
-        USD: 4.82,
-        EUR: 5.22,
-        GBP: 6.07,
-        TND: 1.57,
-      };
+      function renderRatesTable(rates) {
+        const preferredOrder = ["USD", "EUR", "GBP", "TND"];
+        const codes = Object.keys(rates);
+        const ordered = [...preferredOrder.filter((c) => codes.includes(c)), ...codes.filter((c) => !preferredOrder.includes(c)).sort()];
+
+        ratesTableBody.innerHTML = ordered
+          .map((code) => {
+            const { buy, sell } = rates[code];
+            return `<tr><td>${code}/LYD</td><td>${Number(buy).toFixed(3)}</td><td>${Number(sell).toFixed(3)}</td></tr>`;
+          })
+          .join("");
+      }
+
+      async function loadCblRates() {
+        try {
+          // TODO(API): Move this endpoint to environment-configurable URL if multi-region deployment is needed.
+          const response = await fetch("/.netlify/functions/cbl-rates");
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const data = await response.json();
+          if (!data || !data.rates || typeof data.rates !== "object") throw new Error("Invalid payload");
+
+          renderRatesTable(data.rates);
+
+          const apiRates = { LYD: 1 };
+          Object.entries(data.rates).forEach(([code, entry]) => {
+            const perUnit = Number(entry.average ?? entry.sell ?? entry.buy);
+            if (Number.isFinite(perUnit) && perUnit > 0) {
+              const unit = Number(entry.unit) || 1;
+              apiRates[code] = perUnit / unit;
+            }
+          });
+
+          lydPerCurrency = { ...lydPerCurrency, ...apiRates };
+          ratesMeta.textContent = `${t("cblLoaded")} (base: ${data.base || "LYD"}) - ${data.date || "latest"}.`;
+        } catch (error) {
+          console.warn("CBL live rates unavailable, using fallback demo rates.", error);
+        }
+      }
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -452,12 +430,14 @@
         const from = document.getElementById("fromCurrency").value;
         const to = document.getElementById("toCurrency").value;
 
-        const amountInLyd = amount * lydPerCurrency[from];
-        const converted = amountInLyd / lydPerCurrency[to];
+        const amountInLyd = amount * (lydPerCurrency[from] || 1);
+        const converted = amountInLyd / (lydPerCurrency[to] || 1);
 
-        // TODO(API): Include provider timestamp and source in API response for compliance/audit.
-        resultEl.textContent = `Result: ${amount.toFixed(2)} ${from} = ${converted.toFixed(2)} ${to}`;
+        resultEl.textContent = `${t("resultLabel")}: ${amount.toFixed(2)} ${from} = ${converted.toFixed(2)} ${to}`;
       });
+
+      applyLanguage("en");
+      loadCblRates();
     </script>
   </body>
 </html>
